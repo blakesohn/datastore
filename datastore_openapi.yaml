@@ -1,0 +1,61 @@
+openapi: 3.0.2
+info:
+  title: Search API
+  description: >-
+    This API takes a search query and returns results
+  version: 2.0
+servers:
+  - url: https:// #TO-DO : <server-url>
+paths:
+  /http_owners_manual:
+    post:
+      summary: Retrieves content using user's query
+      operationId: search_owners_manual
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                query:
+                  type: string
+                  description: The search query.
+                  example: "How to change a tire"
+      responses:
+        '200':
+          description: Successful search results
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        document:
+                          type: object
+                          properties:
+                            derivedStructData:
+                              type: object
+                              properties:
+                                title:
+                                  type: string
+                                link:
+                                  type: string
+                                snippets:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      snippet:
+                                        type: string
+                                      snippet_status:
+                                        type: string
+                            id:
+                                type: string
+                            name:
+                                type: string
+                        id:
+                          type: string
